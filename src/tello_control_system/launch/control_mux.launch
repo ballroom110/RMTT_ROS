@@ -1,0 +1,28 @@
+<launch>
+  <!-- Tello control MUX: keyboard > joy > agent -->
+  <node pkg="tello_control_system" type="tello_control_mux_node.py" name="tello_control_mux_node" output="screen">
+    <!-- Input topics -->
+    <param name="topic_keyboard" value="/tello/cmd_vel_keyboard" />
+    <param name="topic_joy" value="/tello/cmd_vel_joy" />
+    <param name="topic_agent" value="/tello/cmd_vel_agent" />
+
+    <!-- Output topic -->
+    <param name="topic_output" value="/tello/cmd_vel" />
+
+    <!-- Optional debug topic -->
+    <param name="topic_active_source" value="/tello/mux/active_source" />
+
+    <!-- Priority: higher wins -->
+    <param name="priority_keyboard" value="3" />
+    <param name="priority_joy" value="2" />
+    <param name="priority_agent" value="1" />
+
+    <!-- Freshness timeouts (seconds) -->
+    <param name="timeout_keyboard" value="0.3" />
+    <param name="timeout_joy" value="0.5" />
+    <param name="timeout_agent" value="0.5" />
+
+    <!-- Arbitration loop rate -->
+    <param name="rate_hz" value="30.0" />
+  </node>
+</launch>

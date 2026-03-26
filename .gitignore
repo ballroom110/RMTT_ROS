@@ -1,0 +1,76 @@
+# Workspace build artifacts
+/build/
+/devel/
+/logs/
+/.catkin_workspace
+
+# Python
+**/__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+
+# ROS specific
+*.bag
+*.bag.active
+*.log
+*.rosinstall
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+*~
+
+# System
+.DS_Store
+Thumbs.db
+
+# node / npm (if any)
+node_modules/
+
+# Large experiment / data folders (common in this workspace)
+/runs/
+/runs_single/
+/runs_multi/
+/checkpoint*.pth
+/gifs/
+
+# Video / build outputs
+*.mp4
+*.avi
+*.mkv
+*.h264
+
+# C/C++ build
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Local env files
+.env
+.envrc
+
+# Python virtualenvs
+venv/
+env/
+
+# Misc
+*.zip
+*.tar.gz
+
+# Prevent accidental commit of installed system packages
+/usr/
+
+# Keep workspace-local setup files out of git (but not necessary if you want them tracked)
+devel/setup.bash
+devel/setup.sh
+devel/local_setup.bash
+
+# Ignore generated test results
+/test_results/
+
+# Allow explicit tracking of any file by using `git add -f`

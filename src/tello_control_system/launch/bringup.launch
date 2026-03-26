@@ -1,0 +1,19 @@
+<launch>
+  <!-- Load control parameters -->
+  <rosparam file="$(find tello_control_system)/config/params.yaml" command="load" />
+
+  <!-- Include Tello driver -->
+  <include file="$(find tello_driver)/launch/tello_node.launch" />
+
+  <!-- Include Tello control MUX -->
+  <include file="$(find tello_control_system)/launch/control_mux.launch" />
+
+  <!-- Keyboard Teleop Control -->
+  <node pkg="tello_control_system" type="keyboard_control_node.py" name="keyboard_control_node" output="screen">
+    <!-- Route keyboard velocity through MUX -->
+    <remap from="/tello/cmd_vel" to="/tello/cmd_vel_keyboard" />
+  </node>
+
+  <!-- Fake Odometry from Velocity Integration -->
+  <node pkg="tello_control_system" type="tello_odom_node.py" name="tello_odom_node" output="screen" />
+</launch>

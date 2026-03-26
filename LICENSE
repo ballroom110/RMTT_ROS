@@ -1,0 +1,14 @@
+Repository-level license notice for a multi-license ROS workspace
+
+This repository aggregates multiple ROS packages and third-party components. Individual packages may be licensed under different open-source licenses. The presence of this file does NOT re-license individual subpackages; each subpackage retains its own license as declared in its `package.xml` and/or a license file inside the package directory.
+
+Recommended policy for this repository:
+- Treat the repository as a collection of independently licensed components.
+- Keep and respect each package's own license file (e.g., `tello_driver/LICENSE`, `tello_control_system/package.xml` license tag).
+- For any new code you (the repository owner/contributor) add at the repository root or new packages, add an explicit license file in that package. If you want a single permissive license for new code, choose either MIT or Apache-2.0 (see NOTICE for guidance).
+
+If you would like to designate a single license for newly authored files in the repository root, add a short header here such as:
+
+"New files created by the repository owner are licensed under the MIT License unless otherwise noted. Existing subpackages retain their declared licenses."
+
+This file is intentionally informational. See `NOTICE` for a per-package summary.

@@ -1,0 +1,32 @@
+NOTICE — Per-package license summary and contributor guidance
+
+This repository contains multiple packages. Below is a non-exhaustive summary of license information discovered in the workspace. Always inspect the package directory for an explicit license file and the `package.xml` license tag before reusing code.
+
+Discovered packages (example entries):
+
+- tello_driver/ : license declared in package.xml as Apache2
+  Path: src/tello_driver/package.xml
+
+- tello_control_system/ : license declared in package.xml as MIT
+  Path: src/tello_control_system/package.xml
+
+- h264_image_transport/ : license field marked TODO in package.xml — please review and update before publishing
+  Path: src/h264_image_transport/package.xml
+
+- Other third-party subpackages: see individual package directories under `src/` for LICENSE files.
+
+Contributor guidance:
+1. Do NOT change or remove existing license files inside subpackages.
+2. When adding a new package, include a `LICENSE` file in that package root and declare the license in `package.xml`.
+3. If you want new code in this repository to be permissively licensed by default, choose one of the following and state it explicitly at the top of this file and in `LICENSE`:
+   - MIT: Very permissive, minimal requirements; choose if you want simple reuse.
+   - Apache-2.0: Permissive and includes an explicit patent grant; choose if you want stronger patent protection.
+4. For closed-source or restrictive licensing, do NOT mix with packages under incompatible licenses without legal review.
+5. Before publishing to GitHub, ensure packages with `TODO` license fields are corrected or removed.
+
+How to add license info for a package:
+- Add a `LICENSE` file in the package folder with the full text of the chosen license.
+- Update `package.xml` with `<license>MIT</license>` (or `Apache2`, `BSD`, etc.).
+- Commit both files.
+
+Questions? Add a note in this NOTICE file and tag the repository owner.

@@ -1,0 +1,45 @@
+<launch>
+  <!-- Unified Tello control pipeline bringup -->
+  <!-- keyboard -> /tello/cmd_vel_keyboard -->
+  <!-- joy      -> /tello/cmd_vel_joy -->
+  <!-- agent    -> /tello/cmd_vel_agent -->
+  <!-- mux      -> /tello/cmd_vel -->
+
+  <arg name="enable_joy" default="false" />
+  <arg name="joy_dev" default="/dev/input/gamepads/js_dft" />
+
+  <!-- Driver -->
+  <include file="$(find tello_driver)/launch/tello_node.launch" />
+
+  <!-- Control MUX -->
+  <include file="$(find tello_control_system)/launch/control_mux.launch" />
+
+  <!-- Keyboard teleop: remap velocity to keyboard mux input -->
+  <node pkg="tello_control_system" type="keyboard_control_node.py" name="keyboard_control_node" output="screen">
+    <remap from="/tello/cmd_vel" to="/tello/cmd_vel_keyboard" />
+  </node>
+
+  <!-- Optional joystick pipeline -->
+  <group if="$(arg enable_joy)">
+    <node pkg="joy" type="joy_node" name="joy_node" output="screen">
+      <param name="dev" value="$(arg joy_dev)" />
+      <param name="deadzone" value="0.2" />
+    </node>
+
+    <node pkg="tello_driver" type="gamepad_marshall_node.py" name="gamepad_marshall" output="screen">
+      <remap from="cmd_vel" to="/tello/cmd_vel_joy" />
+      <remap from="takeoff" to="/tello/takeoff" />
+      <remap from="land" to="/tello/land" />
+      <remap from="throw_takeoff" to="/tello/throw_takeoff" />
+      <remap from="palm_land" to="/tello/palm_land" />
+      <remap from="reset" to="/tello/reset" />
+      <remap from="flattrim" to="/tello/flattrim" />
+      <remap from="flip" to="/tello/flip" />
+      <remap from="fast_mode" to="/tello/fast_mode" />
+      <remap from="agent_cmd_vel_in" to="/tello/agent_cmd_vel_in" />
+    </node>
+  </group>
+
+  <!-- Optional odometry visualization node (kept from current stack) -->
+  <node pkg="tello_control_system" type="tello_odom_node.py" name="tello_odom_node" output="screen" />
+</launch>

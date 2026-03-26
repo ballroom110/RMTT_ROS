@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>tello_control_system</name>
+  <version>0.0.1</version>
+  <description>Keyboard teleop and fake odometry system for Tello (RMTT) drone with enhanced control and safety features.</description>
+
+  <maintainer email="user@todo.local">RMTT User</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- Core ROS dependencies -->
+  <build_depend>rospy</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>nav_msgs</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>tello_driver</build_depend>
+
+  <!-- Python runtime dependencies -->
+  <build_depend>python-pynput</build_depend>
+
+  <!-- Execution dependencies -->
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>tello_driver</exec_depend>
+  <exec_depend>python-pynput</exec_depend>
+
+  <export>
+  </export>
+</package>

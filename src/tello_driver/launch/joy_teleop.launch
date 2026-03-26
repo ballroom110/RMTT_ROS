@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<launch>
+  <arg name="joy_dev" default="/dev/input/gamepads/js_dft" />
+  <arg name="namespace" default="tello" />
+
+  <!-- Joy node for gamepad input -->
+  <node pkg="joy" type="joy_node" name="joy_node" output="screen">
+    <param name="dev" value="$(arg joy_dev)" />
+    <param name="deadzone" value="0.2" />
+  </node>
+
+  <!-- Gamepad Command Marshall (maps joy to Twist) -->
+  <node pkg="tello_driver" type="gamepad_marshall_node.py" name="gamepad_marshall" output="screen">
+    <!-- Remap joy topic -->
+    <remap from="/joy" to="/joy" />
+    <!-- Remap output commands to namespaced tello topics -->
+    <!-- IMPORTANT: route joy velocity through MUX input -->
+    <remap from="cmd_vel" to="/$(arg namespace)/cmd_vel_joy" />
+    <remap from="takeoff" to="/$(arg namespace)/takeoff" />
+    <remap from="land" to="/$(arg namespace)/land" />
+    <remap from="throw_takeoff" to="/$(arg namespace)/throw_takeoff" />
+    <remap from="palm_land" to="/$(arg namespace)/palm_land" />
+    <remap from="reset" to="/$(arg namespace)/reset" />
+    <remap from="flattrim" to="/$(arg namespace)/flattrim" />
+    <remap from="flip" to="/$(arg namespace)/flip" />
+    <remap from="fast_mode" to="/$(arg namespace)/fast_mode" />
+    <remap from="agent_cmd_vel_in" to="/$(arg namespace)/agent_cmd_vel_in" />
+  </node>
+
+</launch>
